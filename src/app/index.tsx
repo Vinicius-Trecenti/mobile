@@ -9,7 +9,7 @@ export default function Index() {
             <Welcome />
             <Steps />
 
-            <Button>
+            <Button isLoading={true}>
                 <Button.Title>Começar</Button.Title>
             </Button>
         </View>
