@@ -1,4 +1,4 @@
-import { Text, View, Alert, Modal } from "react-native";
+import { Text, View, Alert, Modal, StatusBar, ScrollView } from "react-native";
 import { useLocalSearchParams, Redirect } from "expo-router";
 import { router } from "expo-router";
 import { api } from "@/services/api";
@@ -24,7 +24,6 @@ export default function Market() {
     const [couponIsFetching, setCouponIsFetching] = useState(false);
     const qrLocked = useRef(false);
 
-    console.log(params.id);
     async function fetchMarket() {
         try{
             const { data } = await api.get("/markets/" + params.id);
@@ -102,11 +101,15 @@ export default function Market() {
 
     return (
         <View style={{ flex: 1}}>
-            <Cover uri={data.cover} />
+            <StatusBar barStyle="light-content" hidden={isVisibleCameraModal}/>
 
-            <Details data={data} />
+            <ScrollView showsVerticalScrollIndicator={false} >
+                <Cover uri={data.cover} />
 
-            {coupon && <Coupon code={coupon} />}
+                <Details data={data} />
+
+                {coupon && <Coupon code={coupon} />}
+            </ScrollView>
 
             <View style={{ padding: 32 }} >
                 <Button onPress={handleOpenCameraModal}>
