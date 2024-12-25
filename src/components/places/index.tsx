@@ -29,7 +29,7 @@ export function Places({ data }: Props) {
                 data={data}
                 keyExtractor={(item) => item.id}
                 renderItem={({ item }) => <Place data={item} />}
-                // contentContainerStyle={s.content}
+                contentContainerStyle={s.content}
                 ListHeaderComponent={() => <Text style={s.title}>Explore locais perto de você</Text>}
                 showsVerticalScrollIndicator={false}
             />
